@@ -243,7 +243,7 @@ namespace Rulet
 
 			
 		}
-		// za uraditi - popraviti metode, ubaciti jos igara, ubaciti nizove
+		// za uraditi - popraviti metode, ubaciti jos igara, ubaciti nizove, izbaciti globalnu promenljivu brojKredita.
 		
 
 	}
