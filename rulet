@@ -1,0 +1,250 @@
+using System;
+
+namespace Rulet
+{
+	class Program
+	{
+				static int brojKredita = 100;
+				public static void pocetniEkran()
+		{
+			Console.WriteLine("Izaberite jednu od sledecih opcija:");
+			Console.WriteLine();
+			Console.WriteLine("1 - Uplatite kredit na vas racun");
+			Console.WriteLine("2 - Igrajte");
+			string opcije = Console.ReadLine();
+			switch(opcije)
+			{
+				case "1":
+					
+					uplatiKredit();
+					break;
+					
+
+				case "2":
+					igra();
+					break;
+					
+				default:
+					Console.WriteLine("Pogresan unos!");
+					pocetniEkran();
+					break;
+					
+
+			}
+	
+			
+		}
+		public static void uplatiKredit()
+		{
+			int uplata = 0;
+			Console.Clear();
+			Console.WriteLine("Broj kredita na vasem racunu je: " +brojKredita);
+			Console.WriteLine("Minimalna uplata je 10 kredita");
+			Console.Write("Ovde unesite svoj ulog: ");
+			try
+			{
+				uplata = int.Parse(Console.ReadLine());
+			}
+			catch
+			{
+				Console.WriteLine("Pogresan unos!");
+				Console.ReadKey();
+				uplatiKredit();
+			}
+			if (uplata<10)
+			{
+			  	Console.Clear();
+			  	Console.WriteLine("Uneli ste manje od 10 kredita, ponovite unos!");
+			  	Console.ReadKey();
+			  	uplatiKredit();
+
+			}
+			else 
+			{
+			  	brojKredita = brojKredita + uplata;
+			}
+
+			Console.Clear();
+			pocetniEkran();
+
+
+			
+		}
+		
+		public static void igra()
+		{
+			Console.Clear();
+			int ulog = 0;
+			Random nasBroj = new Random();
+			string[] boje =  {"Zelena","Crna","Crvena"};
+
+			string[] boje2 =  {"Zelena","Crna","Crvena"};
+			Console.WriteLine("Broj kredita na vasem racunu je: " +brojKredita);
+			Console.WriteLine("Minimalan ulog je 50 kredita");
+			Console.Write("Vas ulog: ");
+			try
+			{
+			ulog = int.Parse(Console.ReadLine());
+			}
+			catch
+			{
+				Console.WriteLine("Pogresan unos!");
+				Console.ReadKey();
+				igra();
+			
+			}
+			
+			
+			
+			if(ulog<50)
+			{
+				Console.WriteLine("Minimalan ulog je 50 kredita");
+				Console.ReadKey();
+				igra();
+			}
+			
+			else if(ulog > brojKredita)
+			{
+				Console.WriteLine("Nemate dovoljno kredita");
+				Console.ReadKey();
+				uplatiKredit();
+				igra();
+			}
+			
+			else
+			{
+			brojKredita = brojKredita - ulog;
+			Console.WriteLine("Izaberite jednu od sledecih opcija");
+			Console.Write("1 > Crna boja		");
+			Console.Write("2 > Crvena boja		");
+			Console.WriteLine("3 > Zelena boja		");
+			Console.WriteLine();
+			Console.Write("4 > Prvih 18 brojeva		");
+			Console.WriteLine("5 > Poslednjih 18 brojeva		");
+			Console.WriteLine();
+			Console.Write("6 > 1-12		");
+			Console.Write("7 > 13-24		");
+			Console.WriteLine("8 > 25-36		");
+			
+			
+			}
+			
+
+			int i = nasBroj.Next(0, 2);
+			int broj = nasBroj.Next(0,36);
+			string opcije = Console.ReadLine();
+			Console.WriteLine();
+			switch(opcije)
+			{
+				case "1":
+					if(broj > 0 && broj %2 != 0)
+					{
+						Console.WriteLine("Cestitamo osvojili ste: " +ulog+ "kredita!");
+						brojKredita = brojKredita + ulog + ulog;
+					}
+
+					break;
+				
+				case "2":
+					if(broj > 0 && broj %2 == 0)
+					{
+						Console.WriteLine("Cestitamo osvojili ste: " +ulog+ "kredita!");
+						brojKredita = brojKredita + ulog +ulog;
+					}
+
+
+					break;
+					
+				case "3":
+					if(broj == 0)
+					{
+						Console.WriteLine("Cestitamo osvojili ste: " +(14*ulog)+ "kredita!");
+						brojKredita = brojKredita +(14*ulog);
+					}
+
+
+
+					break;
+				
+				case "4":
+					if(broj < 19 && broj > 0)
+					{
+						Console.WriteLine("Cestitamo osvojili ste: " +ulog+ "kredita!");
+						brojKredita = brojKredita + ulog + ulog;
+					}
+					break;
+				case "5":
+					if(broj >18)
+					{
+						Console.WriteLine("Cestitamo osvojili ste: " +ulog+ "kredita!");
+						brojKredita = brojKredita + ulog + ulog;
+					}
+					break;
+				case "6":
+					if(broj>0 && broj <13)
+					{
+						Console.WriteLine("Cestitamo osvojili ste: " +(3*ulog)+ "kredita!");
+						brojKredita = brojKredita + (3*ulog);
+					}
+					break;
+					
+				case "7":
+					if(broj >12 && broj <25)
+					{
+						Console.WriteLine("Cestitamo osvojili ste: " +(3*ulog)+ "kredita!");
+						brojKredita = brojKredita + (3*ulog);
+					}
+					break;
+					
+				case "8":
+					if(broj >24)
+					{
+						Console.WriteLine("Cestitamo osvojili ste: " +(3*ulog)+ "kredita!");
+						brojKredita = brojKredita + (3*ulog);
+					}
+					break;
+					
+				default:
+					pocetniEkran();
+					break;
+					
+					
+					
+			}
+			
+			if(broj > 0 && broj %2 == 0)
+			{
+				Console.WriteLine();
+				Console.WriteLine("Broj: " +broj+ "	" + "Boja: " +boje[2]);
+				
+			}
+			else if(broj > 0 && broj %2 != 0)
+			{
+				Console.WriteLine();
+				Console.WriteLine("Broj: " +broj+ "	" + "Boja: " +boje[1]);
+			}
+			
+			else if(broj == 0)
+			{
+				Console.WriteLine();
+				Console.WriteLine("Broj: " +broj+ "	" + "Boja: " +boje[0]);
+			}
+			Console.ReadKey();
+			igra();
+			
+			
+		}
+		
+		
+
+		public static void Main(string[] args)
+		{
+			pocetniEkran();
+
+			
+		}
+		// za uraditi - popraviti metode, ubaciti jos igara, ubaciti nizove
+		
+
+	}
+}
